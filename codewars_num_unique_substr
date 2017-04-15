@@ -1,0 +1,31 @@
+#from https://www.codewars.com/kata/unique-substring-from-joined-strings
+
+def num_unique_substring(str1, str2):
+  superstr = str1 + str2
+  ss_dict = {}
+  next_str = ""
+  solution = []
+  
+  for char in superstr:
+    if char in ss_dict:
+      ss_dict[char] += 1
+    else:
+      ss_dict[char] = 1
+  
+  uniques = [k for k,v in ss_dict.items() if v==1]
+  
+  for char in superstr:
+    if char in uniques:
+      next_str += char
+      if char == superstr[-1]:
+        solution.append(next_str)
+    else:
+      if next_str == "":
+        pass
+      else:
+        solution.append(next_str)
+        next_str = ""
+  print(solution)
+  return len(solution)
+
+print(num_unique_substring("piquancy", "refocusing"))
