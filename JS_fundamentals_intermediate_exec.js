@@ -350,5 +350,197 @@ function displayOddNumbers(numbers) {
 
 //
 
-`dsfdfk1`
+var nestedObject = {
+  speakers: [{name:"Elie"},{name:"Tim"},{name:"Matt"}],
+  data: {
+    continents: {
+      europe: {
+        countries: {
+          switzerland: {
+            capital: "Bern",
+            population: 8000000
+          }
+        }
+      }
+    },
+    languages: {
+      spanish: {
+          hello: "Hola"
+      },
+      french: {
+          hello: "Bonjour"
+      }
+    }
+  }
+}
+
+function addSpeaker(name) {
+	nestedObject.speakers.push({name: name});	
+}
+
+addSpeaker("Amanda");
+
+function addLanguage(lang, word) {
+	nestedObject.data.languages[lang]={hello:word};
+}
+
+addLanguage("japanese", "konnichiwa");
+
+function addCountry(country, capital, population) {
+	nestedObject.data.continents.europe.countries[country] = {
+		capital: capital,
+		population: population
+	};
+}
+
+addCountry("England", "London", 55000000);
+
+//
+
+function rotate(arr, num) {
+	for(var i=0; i<num; i++) {
+		var moved = arr.pop();
+		arr.unshift(moved);		
+	}
+	return arr;
+}
+
+rotate([1,2,3], 2);
+
+//
+
+// function makeXOGrid(rows, cols) {
+// 	master_array = [];
+// 	for(var i=0; i<rows; i++) {
+// 		master_array[i] = [];
+// 	}
+// 		for(var j=1; j<=cols; j++) {
+// 			master_array[i].push("X");
+// 		}
+// }
+
+function makeXOGrid(rows, cols) {
+	var master_array = [];
+	var switch_if = true;
+	for(var i=0; i<rows; i++) {
+		master_array.push([]);
+		for(var j=1; j<=cols; j++) {
+			if(switch_if) {
+				master_array[i].push("X");
+				switch_if = false;	
+			} else {
+				master_array[i].push("O");
+				switch_if = true;
+			}
+		}
+	}
+	return master_array;		
+}
+
+// Callback practice
+
+function each(arr, fn) {
+	for(i=0; i<arr.length; i++) {
+		fn(arr[i]);
+	}
+
+}
+
+map([1,2,3,4], function(val){
+    return val * 2;
+});
+
+
+function map(arr, fn) {
+	new_array = [];
+	for(i=0; i<arr.length; i++) {
+		new_array.push(fn(arr[i]));
+	}
+	return new_array;
+}
+
+map([1,2,3,4], function(val){
+    return val * 2;
+});
+
+
+function reject(arr, fn) {
+	var new_array2 = [];
+	for(var i=0; i<arr.length; i++) {
+		if(!fn(arr[i])) {
+			new_array2.push(arr[i]);
+		}
+	}
+	return new_array2;
+}
+
+reject([1,2,3,4], function(val){
+    return val > 2;
+})
+
+reject([2,3,4,5], function(val){
+    return val % 2 === 0;
+});
+
+//
+
+function createCounter() {
+	var count = 0;
+	return function (){
+		return ++count;
+	}
+}
+
+//
+
+function countDown(num) {
+	var timer = setInterval(function(){
+		num--;
+		if(num == 0) {
+			console.log("DONE!");
+			clearInterval(timer);
+		} else {
+			console.log(num);
+		}
+	}, 1000);
+}
+
+//
+
+function randomGame() {
+	var count = 1;
+	var timer = setInterval(function() {
+		var x = Math.random();
+		if (x>.75) {
+			clearInterval(timer);
+			console.log("It took " + count + " tries");
+		} else {
+			count++;
+		}
+	}, 1000)
+}
+
+//
+
+function isEven(num) {
+	if (num % 2 == 0) {
+		return true;
+	}
+	return false;
+}
+
+//
+
+function isOdd(num) {
+	if (num % 2 != 0) {
+		return true;
+	}
+	return false;
+}
+
+//
+
+function isPrime(num) {
+	if(num)
+}
 
