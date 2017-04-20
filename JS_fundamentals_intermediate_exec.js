@@ -541,6 +541,87 @@ function isOdd(num) {
 //
 
 function isPrime(num) {
-	if(num)
+	for (i=2; i<num; i++) {
+		if (num % i == 0 && num != i) {
+			return false;
+		}
+	}
+	return true;
 }
 
+//
+
+function numberFact(num, callback) {
+	return callback(num);
+}
+
+numberFact(59,isPrime);
+
+//
+
+function find(arr, callback) {
+	for (i=0; i<arr.length; i++) {
+		if (callback(arr[i])) {
+			return arr[i];
+        }
+	}
+}
+
+//
+
+function findIndex(arr, callback) {
+	for (i=0; i<arr.length; i++) {
+		if (callback(arr[i])) {
+			return i;
+        }
+	}
+}
+
+//
+
+function specialMultiply(a,b) {
+	if (b == undefined) {
+		return function(c) {
+			return a * c;
+		}
+	}
+	return a * b;
+}
+
+////OR, same thing:
+
+function specialMultiply(a,b) {
+	if (arguments.length === 1) {
+		return function(c) {
+			return a * c;
+		}
+	}
+	return a * b;
+}
+
+// DOM Exercises
+
+var zebra = document.getElementById("container");
+var moose = document.querySelector("#container");
+var allSecond = document.getElementsByClassName("second");
+var olThird = domcument.querySelector("ol .third");
+zebra.innerText = "Hello!";
+
+var toAddTo = document.querySelector("div.footer");
+// SAME: var toAddTo = document.querySelector(".footer");
+toAddTo.classList.add("main");
+// SAME: footer.className += "main";
+toAddTo.classList.remove("main");
+var liMore = document.createElement("li");
+liMore.setAttribute("class", "fourth");
+liMore.innerText("four");
+var ul = document.querySelector("ul");
+ul.appendChild(liMore);
+
+var olLis = querySelectorAll("ol li");
+for(i=0; i<olLis.length; i++) {
+	olLis[i].style.backgroundColor = "green";
+}
+
+var toRemove = document.querySelector(".footer")
+toRemove.remove();
