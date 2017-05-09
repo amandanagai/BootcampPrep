@@ -8,7 +8,6 @@
 window.onload = function() {
   var section = document.querySelector("section");
   section.addEventListener("mouseover", function(event) {
-    debugger
     var selectedColor = document.querySelector(".selected");
     selectedColor.innerText = event.target.className;
   })

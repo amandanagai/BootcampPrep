@@ -184,3 +184,35 @@ def intersection(list1, list2, create_dict):
 	return [k for k,v in inter_dict.items() if v > 1]  
 
 print(intersection([1,2,3], [2,3,4], create_dict))
+
+def mode(num_list):
+  num_dict = {val: num_list.count(val) for val in num_list}
+  top_val = num_dict[num_list[0]]
+  for key in num_dict:
+    if num_dict[key] > top_val:
+      top_val = key
+  return top_val
+
+def is_palindrome(str):
+  to_test = ''.join(str.split(' ')).lower()
+  return True if to_test == to_test[::-1] else False  
+
+def multiple_letter_count(str):
+  return {ltr: str.count(ltr) for ltr in str}
+
+def partition(lst, fn):
+  return [[fn(item) for item in lst if fn(item)], [fn(item) for item in lst if not fn(item)]]
+
+def add(a,b):
+    return a+b
+
+def once(fn):
+  def inner(*args):
+    if inner.count < 1:
+      inner.count += 1
+      return fn(*args)
+    return "Can't run function more than once!"
+  inner.count = 0
+  return inner
+
+one_addition = once(add)

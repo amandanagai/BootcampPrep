@@ -1,0 +1,49 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <article>
+        <br>
+        <title>
+            Hack or Snooze
+        </title>
+        <div>
+            <p>Search for types of GIFs. e.g See what happens if you type "funny" in the searchbar.</p>
+        </div>
+        <form>
+            <input type="text" id="search"><br>
+            <input type="submit" value="Go!">
+        </form>
+        <div>
+            <p class='embedLocation'>
+            </p>
+            <!-- <img src="" alt=""> -->
+        </div>
+    </article>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script>
+       $(document).ready(function() {
+            var $inputs;
+            var $toEmbed;
+            
+            $('form').submit(function(e) {
+                e.preventDefault();
+                $inputs = $('#search').val();
+                $.ajax({
+                    method: "GET",
+                    url: "http://api.giphy.com/v1/gifs/search" + "?q=" + $inputs + "&api_key=dc6zaTOxFJmzC"
+                }).then(function(response){
+                    $toEmbed = response.data[0].embed_url
+                    $('.embedLocation').append($('<img>').attr('src', $toEmbed));
+
+                }).catch(function(error){
+                    console.log(error);
+                })
+            })
+        });
+    </script>
+</body>
+

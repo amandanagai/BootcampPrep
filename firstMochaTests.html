@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our First Mocha Tests</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.1.0/mocha.css" rel="stylesheet" />
+</head>
+<body>
+  <div id="mocha"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.1.0/mocha.js"></script>
+  <script src="http://chaijs.com/chai.js"></script>
+  <script>
+    mocha.setup('bdd');
+    var expect = chai.expect;
+
+    function double(arr) {
+      var newArr = [];
+      for (var i = 0; i < arr.length; i++) {
+          newArr.push(arr[i] * 2);
+      }
+      return newArr;
+    }
+
+    function doubleInPlace(arr) {
+      for (var i = 0; i < arr.length; i++) {
+          arr[i] = arr[i] * 2;
+      }
+      return arr;
+    }
+
+    describe("Doubling array tests", function() {
+
+      describe("double", function() {
+        
+        it("should double all values in an array", function() {
+          expect(double([1,2,3])).to.deep.equal([2,4,6]);
+        }); 
+
+        it("should not mutate the original array", function() {
+          var arr = [1,2,3];
+          double(arr);
+          expect(arr).to.deep.equal([1,2,3]);
+        });
+
+      });
+
+      describe("doubleInPlace", function() {
+        
+        it("should double all values in an array", function() {
+          expect(doubleInPlace([1,2,3])).to.deep.equal([2,4,6]);
+        }); 
+
+        it("should mutate the original array", function() {
+          var arr = [1,2,3];
+          doubleInPlace(arr);
+          expect(arr).to.deep.equal([2,4,6]);
+        });
+        
+      });
+
+    });
+
+    mocha.checkLeaks();
+    mocha.run();
+  </script>
+</body>
+</html>
